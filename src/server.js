@@ -1,15 +1,18 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const app = express();
+app.use(express.json());
 
 function updateDatabase(data) {
   return data;
 }
 
-app.use(express.json());
-app.post('/test', (req, res) => {
-  const newValue = updateDatabase(res.body);
+const router = express.Router();
+router.get('/test', (req, res) => {
+  const newValue = updateDatabase("test");
   res.json(newValue);
 });
+
+app.use('/.netlify/functions/server', router);
 
 module.exports.handler = serverless(app);
