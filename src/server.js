@@ -9,7 +9,7 @@ function updateDatabase(data) {
 
 const router = express.Router();
 router.get('/test', (req, res) => {
-  const newValue = updateDatabase("test");
+  const newValue = updateDatabase("xs");
   res.json(newValue);
 });
 
